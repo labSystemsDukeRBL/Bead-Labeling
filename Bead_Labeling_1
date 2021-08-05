@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <!-- START:stylesheet
+  -->
+  
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/stylesheets/labarchive.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/jquery-ui.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/themes/base/ui.all.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/chosen/chosen.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/media/css/jquery.dataTables_themeroller.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/extras/TableTools/media/css/TableTools.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/extras/ColVis/media/css/ColVis.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/jquery.calculator.package-1.3.2/jquery.calculator.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/freezerbox/jquery.freezerbox.css">
+      <link rel="stylesheet" type="text/css" href="https://mynotebook.labarchives.com/javascripts/freezerbox/jquery.colorselect.css">
+              <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/jquery-1.7.2.min.js"></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/jquery-ui-1.9.1.custom.min.js"></script>
+                        <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/populate/jquery.populate.pack.js" defer="defer"></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/numeric/jquery.numeric.js" defer="defer"></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/jquery.calculator.package-1.3.2/jquery.calculator.js" defer="defer"></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/daepark-postmessage/postmessage.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/forms/widget_proxy.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/forms/parent_form_script.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/forms/database_form_script.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/media/js/jquery.dataTables.min.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/extras/TableTools/media/js/TableTools.min.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/extras/TableTools/media/js/ZeroClipboard.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/extras/ColVis/media/js/ColVis.min.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/DataTables-1.9.3/extras/ColResize/ColReorderWithResize.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/chosen/chosen.jquery_modified.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/autoresize/jquery.autoresize.min.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/freezerbox/jquery.freezerbox.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/freezerbox/jquery.colorselect.js" ></script>
+                <script type="text/javascript" src="https://mynotebook.labarchives.com/javascripts/freezerbox/freezerbox_form_script.js" ></script>
+        
+  <title></title>
+</head>
+<body>
+<script>
+  var form_script = null;
+  try {
+    $(document).ready(function () {
+          
+          
+          // Create window var to store the locale for the datepicker
+          window.datepicker_locale = '';
+//***************************************************************************
+//***************************************************************************
+//***************************************************************************
+//place your javascript code below and when you have it the way you want it
+//just paste it into the LA Dev tool
+//***************************************************************************
+//***************************************************************************
+//***************************************************************************
+          form_script = my_widget_script =
+{
+  init:function (mode, json_data) {
+    //this method is called when the form is being constructed
+    // parameters
+    // mode = if it equals 'view' than it should not be editable
+    //        if it equals 'edit' then it will be used for entry
+    //        if it equals 'view_dev' same as view,  does some additional checks that may slow things down in production
+    //        if it equals 'edit_dev' same as edit,   does some additional checks that may slow things down in production
+
+    // json_data will contain the data to populate the form with, it will be in the form of the data
+    // returned from a call to to_json or empty if this is a new form.
+    //By default it calls the parent_class's init.
+
+    //TO DO write code specific to your form
+    this.parent_class.init(mode, json_data);
+    
+    //CUSTOM FUNCTION TO highlight empty inputs
+
+        //search the_form for all elements that are of type input
+        $('#the_form').find("input").each(function () {
+                if (!$(this).val()) { //if there is not a value for this input
+                    $(this).css('background-color', 'yellow');
+                }
+        });
+    // make sure the show hides work
+    this.showHideGeneric("lst1");
+    this.showHideGeneric("lst2");
+  },
+
+  to_json:function () {
+    //should return a json string containing the data entered into the form by the user
+    //whatever is return from the method is persisted in LabArchives.  must not be binary data.
+    //called when the user hits the save button, when adding or editing an entry
+
+
+    //TO DO write code specific to your form
+    return this.parent_class.to_json();
+  },
+
+  from_json:function (json_data) {
+    //populates the form with json_data
+    //TO DO write code specific to your form
+    this.parent_class.from_json(json_data);
+  },
+
+  test_data:function () {
+    //during development this method is called to populate your form while in preview mode
+    //TO DO write code specific to your form
+    return this.parent_class.test_data();
+  },
+
+  is_valid:function (b_suppress_message) {
+    //called when the user hits the save button, to allow for form validation.
+    //returns an array of dom elements that are not valid - default is those elements marked as mandatory
+    // that have no data in them.
+    //You can modify this method, to highlight bad form elements etc...
+    //LA calls this method with b_suppress_message and relies on your code to communicate issues to the user
+    //Returning an empty array [] or NULL equals no error
+    //TO DO write code specific to your form
+
+    return this.parent_class.is_valid(b_suppress_message);
+  },
+
+  is_edited:function () {
+    //should return true if the form has been edited since it was loaded or since reset_edited was called
+    return this.parent_class.is_edited();
+  },
+
+  reset_edited:function () {
+    //typically called have a save
+    //TO DO write code specific to your form
+    return this.parent_class.reset_edited();
+  },
+  
+  showHideGeneric:function (x) {
+    //will show extra fields that are inside a div container when ever "other" is selected in a select field
+    //any other option will hide the field
+    //get the field id in the function call
+    var xField = document.getElementById(x); //get the element
+    var xNumber = x.charAt(x.length-1); //get the number at the end of the id 
+    var divName = "otherDiv"+xNumber; //used number to get/build corresponding div container name
+    var y = document.getElementById(divName); //get div container
+    if (xField.value === "Other" || xField.value === "Homemade") { //of select field is other set div visible
+      y.style.visibility="visible";
+    }
+    else { //otherwise set div hidden
+      y.style.visibility = "hidden";
+    }
+  },
+  
+  checkFailAlert:function (fieldId) {
+    //function triggers a confirmation popup with a warning when any sample check question is answered no
+    //passes the id of the select field in the function call
+    var x = document.getElementById(fieldId); //get the field
+    if (x.value === "false") { //check if answered no
+      confirm("Confirm with lab manager or requester before continuing");//confirm if no else do nothing
+    }
+  },
+  
+  makeTitle:function () {
+   $("#title").val("REQ-" + $("#req_num").val() + " " + $("#lst1").val() + " " + $("#pi").val())
+  },
+  callMultipleFunctions (x) {
+  this.showHideGeneric(x);
+  this.makeTitle();
+}
+}
+;
+//**************************************************************************
+//End of your code
+//**************************************************************************
+//**************************************************************************
+          //the parent class functionality is added to your class below.
+          form_script.parent_class = parent_form_script;
+          //**************************************************************************
+          //**************************************************************************
+          //call to the init function in your script.  Note that you can change the mode in the call here.
+          //your choices are view,view_dev,edit,edit_dev,  see the parent class source for details
+          form_script.init("view", function() {return form_script.test_data()});
+
+
+        }
+    )
+
+  }
+  catch (e) {
+
+  }
+
+  parent_form_script.wiget_version_info ={"version":20,"created":"2021-07-20T10:32:23-04:00","last_modified_at":"2021-07-20T11:00:48-04:00","last_modified_by":"Nathan Lee","owned_by":"unknown"};
+
+</script>
+<form id="the_form" style="display:table">
+    <!------------------------------------------------------------------------------------------>
+  <!--the html for your tool goes here.  Paste it into the LA dev tool when you have it the way you want it-->
+  <!------------------------------------------------------------------------------------------>
+  <p><span style="font-size:16px;"><strong>EXPERIMENT INFORMATION</strong> </span></p>
+
+<p>Core Req#: <input id="req_num" name="core_req" onchange="my_widget_script.makeTitle()" type="text" /> Project Name: <select id="lst1" name="project" onchange="my_widget_script.callMultipleFunctions(this.id)"><option value="DOD">DOD</option><option value="RADCORE">RADCORE</option><option value="GV-CRC">GV-CRC</option><option value="Flu P01">Flu P01</option><option value="Core Request">Core Request</option><option value="Thymus P01">Thymus P01</option><option value="CETR">CETR</option><option value="EQAPOL">EQAPOL</option><option value="Other">Other</option><option value="DARPA P3">DARPA P3</option><option value="CIVICS">CIVICS</option><option selected="selected" value="null">[Please Select]</option></select> &nbsp;<span id="otherDiv1"> If other please specify:<input name="other_project" type="text" /> </span></p>
+
+<p>Study PI: <input id="pi" name="pi" onchange="my_widget_script.makeTitle()" type="text" /> Date Performed: <input name="performed" type="date" /></p>
+
+<p>This page should be titled: <input id="title" name="title" size="100" type="text" /></p>
+
+<p><strong>SAMPLE DETAILS</strong></p>
+
+<p>Sample Storage Location: <select id="lst2" name="sample_storage" onchange="my_widget_script.showHideGeneric(this.id)"><option selected="selected" value="null">Please Select</option><option value="GDS -80C III (room 1040 antiroom)">GDS -80C III (room 1040 antiroom)</option><option value="GDS -80C I (loading dock)">GDS -80C I (loading dock)</option><option value="RBL sample handover -80C (BSL2 hallway)">RBL sample handover -80C (BSL2 hallway)</option><option value="GDS -20C II (VWR - room 1036)">GDS -20C II (VWR - room 1036)</option><option value="GDS -20C I (room 1036 antiroom)">GDS -20C I (room 1036 antiroom)</option><option value="GDS -20C III (loading dock)">GDS -20C III (loading dock)</option><option value="RBL LN2 (loading dock)">RBL LN2 (loading dock)</option><option value="RBL cold room">RBL cold room</option><option value="GDS 4C I (room 1036 antiroom)">GDS 4C I (room 1036 antiroom)</option><option value="GDS 4C II (VWR - room 1036)">GDS 4C II (VWR - room 1036)</option><option value="Deli fridge (room 1040)">Deli fridge (room 1040)</option><option value="GDS 4C (room 1040 antiroom)">GDS 4C (room 1040 antiroom)</option><option value="Other">Other</option></select>&nbsp;&nbsp;<span id="otherDiv2"> Please specify: <input name="other_location" type="text" /></span>&nbsp;</p>
+
+<p>Box: <input name="box" size="10" type="text" /></p>
+
+<p><span style="font-size:16px;"><strong>SAMPLE CHECK</strong></span></p>
+
+<p>Are all samples clearly and unambiguously labeled?&nbsp;&nbsp; <select id="q1" name="q1" onchange="my_widget_script.checkFailAlert(this.id)"><option selected="selected" value="null">Yes/No</option><option value="true">Yes</option><option value="false">No</option></select></p>
+
+<p>Does the number of samples provided match what was requested?&nbsp; <select id="q2" name="q2" onchange="my_widget_script.checkFailAlert(this.id)"><option selected="selected" value="null">Yes/No</option><option value="true">Yes</option><option value="false">No</option></select></p>
+
+<p>Comments<input name="samp_check_comment" size="140" type="text" /></p>
+
+<p><strong>REAGENT CHECK</strong><br />
+Check the following reagents are available before continuing.<br />
+Luminex wash buffer (PBS, 1% BSA, 0.02% Tween-20, 0.05% Sodium Azide, pH 7.4)<br />
+&nbsp;&nbsp; &nbsp;497.5 mL PBS (Gibco 10010-023)<br />
+&nbsp;&nbsp; &nbsp;5g Bovine Serum Albumen (Sigma A2153)<br />
+&nbsp;&nbsp; &nbsp;100 &mu;L Tween-20 (Quality Biological #A611-0777-13)<br />
+&nbsp;&nbsp; &nbsp;2.5 mL 10% Sodium Azide Solution (Sigma S2002)<br />
+&nbsp;&nbsp; &nbsp;Adjust to pH 7.4<br />
+&nbsp;&nbsp; &nbsp;Filter sterilize and store at 4&deg;C for up to one year unless visible signs of contamination form<br />
+Luminex beads in the appropriate regions<br />
+Activation buffer: 100 mM monobasic Sodium Phosphate pH6.2<br />
+Coupling buffer: 1x PBS<br />
+Sulpho-NHS (stored dry at -20&deg;C)<br />
+EDC (stored dry at -20&deg;C)</p>
+
+<p>Labels</p>
+
+  <!------------------------------------------------------------------------------------------>
+  <!--end of your code-->
+  <!------------------------------------------------------------------------------------------>
+
+</form>
