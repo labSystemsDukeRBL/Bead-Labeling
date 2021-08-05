@@ -1,0 +1,38 @@
+<p><span style="font-size:16px;"><strong>EXPERIMENT INFORMATION</strong> </span></p>
+
+<p>Core Req#: <input id="req_num" name="core_req" onchange="my_widget_script.makeTitle()" type="text" /> Project Name: <select id="lst1" name="project" onchange="my_widget_script.callMultipleFunctions(this.id)"><option value="DOD">DOD</option><option value="RADCORE">RADCORE</option><option value="GV-CRC">GV-CRC</option><option value="Flu P01">Flu P01</option><option value="Core Request">Core Request</option><option value="Thymus P01">Thymus P01</option><option value="CETR">CETR</option><option value="EQAPOL">EQAPOL</option><option value="Other">Other</option><option value="DARPA P3">DARPA P3</option><option value="CIVICS">CIVICS</option><option selected="selected" value="null">[Please Select]</option></select> &nbsp;<span id="otherDiv1"> If other please specify:<input name="other_project" type="text" /> </span></p>
+
+<p>Study PI: <input id="pi" name="pi" onchange="my_widget_script.makeTitle()" type="text" /> Date Performed: <input name="performed" type="date" /></p>
+
+<p>This page should be titled: <input id="title" name="title" size="100" type="text" /></p>
+
+<p><strong>SAMPLE DETAILS</strong></p>
+
+<p>Sample Storage Location: <select id="lst2" name="sample_storage" onchange="my_widget_script.showHideGeneric(this.id)"><option selected="selected" value="null">Please Select</option><option value="GDS -80C III (room 1040 antiroom)">GDS -80C III (room 1040 antiroom)</option><option value="GDS -80C I (loading dock)">GDS -80C I (loading dock)</option><option value="RBL sample handover -80C (BSL2 hallway)">RBL sample handover -80C (BSL2 hallway)</option><option value="GDS -20C II (VWR - room 1036)">GDS -20C II (VWR - room 1036)</option><option value="GDS -20C I (room 1036 antiroom)">GDS -20C I (room 1036 antiroom)</option><option value="GDS -20C III (loading dock)">GDS -20C III (loading dock)</option><option value="RBL LN2 (loading dock)">RBL LN2 (loading dock)</option><option value="RBL cold room">RBL cold room</option><option value="GDS 4C I (room 1036 antiroom)">GDS 4C I (room 1036 antiroom)</option><option value="GDS 4C II (VWR - room 1036)">GDS 4C II (VWR - room 1036)</option><option value="Deli fridge (room 1040)">Deli fridge (room 1040)</option><option value="GDS 4C (room 1040 antiroom)">GDS 4C (room 1040 antiroom)</option><option value="Other">Other</option></select>&nbsp;&nbsp;<span id="otherDiv2"> Please specify: <input name="other_location" type="text" /></span>&nbsp;</p>
+
+<p>Box: <input name="box" size="10" type="text" /></p>
+
+<p><span style="font-size:16px;"><strong>SAMPLE CHECK</strong></span></p>
+
+<p>Are all samples clearly and unambiguously labeled?&nbsp;&nbsp; <select id="q1" name="q1" onchange="my_widget_script.checkFailAlert(this.id)"><option selected="selected" value="null">Yes/No</option><option value="true">Yes</option><option value="false">No</option></select></p>
+
+<p>Does the number of samples provided match what was requested?&nbsp; <select id="q2" name="q2" onchange="my_widget_script.checkFailAlert(this.id)"><option selected="selected" value="null">Yes/No</option><option value="true">Yes</option><option value="false">No</option></select></p>
+
+<p>Comments<input name="samp_check_comment" size="140" type="text" /></p>
+
+<p><strong>REAGENT CHECK</strong><br />
+Check the following reagents are available before continuing.<br />
+Luminex wash buffer (PBS, 1% BSA, 0.02% Tween-20, 0.05% Sodium Azide, pH 7.4)<br />
+&nbsp;&nbsp; &nbsp;497.5 mL PBS (Gibco 10010-023)<br />
+&nbsp;&nbsp; &nbsp;5g Bovine Serum Albumen (Sigma A2153)<br />
+&nbsp;&nbsp; &nbsp;100 &mu;L Tween-20 (Quality Biological #A611-0777-13)<br />
+&nbsp;&nbsp; &nbsp;2.5 mL 10% Sodium Azide Solution (Sigma S2002)<br />
+&nbsp;&nbsp; &nbsp;Adjust to pH 7.4<br />
+&nbsp;&nbsp; &nbsp;Filter sterilize and store at 4&deg;C for up to one year unless visible signs of contamination form<br />
+Luminex beads in the appropriate regions<br />
+Activation buffer: 100 mM monobasic Sodium Phosphate pH6.2<br />
+Coupling buffer: 1x PBS<br />
+Sulpho-NHS (stored dry at -20&deg;C)<br />
+EDC (stored dry at -20&deg;C)</p>
+
+<p>Labels</p>
