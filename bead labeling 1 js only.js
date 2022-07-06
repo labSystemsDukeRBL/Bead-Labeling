@@ -74,6 +74,26 @@ var form_script = null;
     //typically called have a save
     //TO DO write code specific to your form
     return this.parent_class.reset_edited();
+  },
+  checkFailAlert:function (fieldId) {
+    //function triggers a confirmation popup with a warning when question is answered no
+    //passes the id of the select field in the function call
+    var x = document.getElementById(fieldId); //get the field
+    if (x.value === "false") { //check if answered no
+      confirm("STOP. You must complete RVU SOP004 Appendix IV: Preparation of Sera Samples for HAI Processing, before proceeding");
+    }
+  },
+  checkFailAlert2:function (fieldID) {
+    var x = document.getElementById(fieldID); //get the field
+    if (x.value === "false") { //check if answered no
+      confirm("STOP. Answer must be yes. Complete HAI treatment first.");
+    }
+  },
+  checkFailAlert3:function (fieldID) {
+    var x = document.getElementById(fieldID); //get the field
+    if (x.value === "false") { //check if answered no
+      confirm("STOP. Confirm with manager before moving on.");
+    }
   }
 }
 ;
