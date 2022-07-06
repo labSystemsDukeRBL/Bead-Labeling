@@ -1,4 +1,19 @@
-my_widget_script =
+var form_script = null;
+  try {
+    $(document).ready(function () {
+          
+          
+          // Create window var to store the locale for the datepicker
+          window.datepicker_locale = '';
+//***************************************************************************
+//***************************************************************************
+//***************************************************************************
+//place your javascript code below and when you have it the way you want it
+//just paste it into the LA Dev tool
+//***************************************************************************
+//***************************************************************************
+//***************************************************************************
+          form_script = my_widget_script =
 {
   init:function (mode, json_data) {
     //this method is called when the form is being constructed
@@ -14,18 +29,6 @@ my_widget_script =
 
     //TO DO write code specific to your form
     this.parent_class.init(mode, json_data);
-    
-    //CUSTOM FUNCTION TO highlight empty inputs
-
-        //search the_form for all elements that are of type input
-        $('#the_form').find("input").each(function () {
-                if (!$(this).val()) { //if there is not a value for this input
-                    $(this).css('background-color', 'yellow');
-                }
-        });
-    // make sure the show hides work
-    this.showHideGeneric("lst1");
-    this.showHideGeneric("lst2");
   },
 
   to_json:function () {
@@ -71,38 +74,28 @@ my_widget_script =
     //typically called have a save
     //TO DO write code specific to your form
     return this.parent_class.reset_edited();
-  },
-  
-  showHideGeneric:function (x) {
-    //will show extra fields that are inside a div container when ever "other" is selected in a select field
-    //any other option will hide the field
-    //get the field id in the function call
-    var xField = document.getElementById(x); //get the element
-    var xNumber = x.charAt(x.length-1); //get the number at the end of the id 
-    var divName = "otherDiv"+xNumber; //used number to get/build corresponding div container name
-    var y = document.getElementById(divName); //get div container
-    if (xField.value === "Other" || xField.value === "Homemade") { //of select field is other set div visible
-      y.style.visibility="visible";
-    }
-    else { //otherwise set div hidden
-      y.style.visibility = "hidden";
-    }
-  },
-  
-  checkFailAlert:function (fieldId) {
-    //function triggers a confirmation popup with a warning when any sample check question is answered no
-    //passes the id of the select field in the function call
-    var x = document.getElementById(fieldId); //get the field
-    if (x.value === "false") { //check if answered no
-      confirm("Confirm with lab manager or requester before continuing");//confirm if no else do nothing
-    }
-  },
-  
-  makeTitle:function () {
-   $("#title").val("REQ-" + $("#req_num").val() + " " + $("#lst1").val() + " " + $("#pi").val())
-  },
-  callMultipleFunctions (x) {
-  this.showHideGeneric(x);
-  this.makeTitle();
+  }
 }
-}
+;
+//**************************************************************************
+//End of your code
+//**************************************************************************
+//**************************************************************************
+          //the parent class functionality is added to your class below.
+          form_script.parent_class = parent_form_script;
+          //**************************************************************************
+          //**************************************************************************
+          //call to the init function in your script.  Note that you can change the mode in the call here.
+          //your choices are view,view_dev,edit,edit_dev,  see the parent class source for details
+          form_script.init("view", function() {return form_script.test_data()});
+
+
+        }
+    )
+
+  }
+  catch (e) {
+
+  }
+
+  parent_form_script.wiget_version_info ={"version":null,"created":null,"last_modified_at":null,"last_modified_by":null,"owned_by":"unknown"};
